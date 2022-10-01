@@ -1,4 +1,6 @@
 const grid = document.querySelector('.grid')
+const player = document.querySelector('.player')
+const timer = document.querySelector('.timer')
 
 const characters = [
     'allMight',
@@ -12,6 +14,8 @@ const characters = [
     'toga',
     'miruko',
 ]
+
+const setPlayer = localStorage.getItem('Player')
 
 const createCardElement = (tag, className)=>{
     const element = document.createElement(tag)
@@ -28,7 +32,9 @@ const checkEndGame = ()=>{
     const disabledCards = document.querySelectorAll('.disabledCard')
 
     if(disabledCards.length === 20){
-        alert('parabéns você venceu')
+        clearInterval(this.loop)
+        alert(`parabéns ${setPlayer} !!, você venceu. Você terminou o jogo em ${timer.innerHTML} segundos !`)
+
     }
 }
 
@@ -61,7 +67,7 @@ const checkCards = ()=>{
 
 const revealCard = ({ target })=>{
 
-    if (target.parentNode.className.includes('reveal-car    d')){
+    if (target.parentNode.className.includes('reveal-card')){
         return;
     }
 
@@ -106,4 +112,21 @@ const loadGame = () => {
     });
 }
 
-loadGame();
+const startTimer = ()=>{
+
+    this.loop = setInterval(()=>{
+        const currentTime = +timer.innerHTML
+
+        timer.innerHTML = currentTime + 1
+    },1000)
+}
+
+
+window.onload = ()=>{
+
+    const setPlayer = localStorage.getItem('Player')
+
+    player.innerHTML = setPlayer;
+    startTimer()
+    loadGame();
+}
