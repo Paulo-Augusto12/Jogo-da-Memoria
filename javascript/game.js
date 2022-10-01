@@ -33,7 +33,7 @@ const checkEndGame = ()=>{
 
     if(disabledCards.length === 20){
         clearInterval(this.loop)
-        alert(`parabéns ${setPlayer} !!, você venceu. Você terminou o jogo em ${timer.innerHTML} segundos !`)
+        alert(`parabéns ${player} !!, você venceu. Você terminou o jogo em ${timer.innerHTML} segundos !`)
 
     }
 }
